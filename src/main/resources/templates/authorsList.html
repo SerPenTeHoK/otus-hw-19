@@ -24,7 +24,7 @@
     <tr th:each="author : ${authors}">
         <td th:text="${author.id}">1</td>
         <td th:text="${author.name}">John Doe</td>
-        <td width="20>
+        <td width="20">
             <a th:href="@{/author(id=${author.id})}" href="authorEdit.html">Edit</a>
         </td>
         <td width="20">

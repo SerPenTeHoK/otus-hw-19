@@ -69,7 +69,7 @@ public class BookShell {
 
     @ShellMethod("Add library user")
     public String addUser(@ShellOption String name, @ShellOption String password) {
-        LibUser newUser = new LibUser(null, name, password);
+        LibUser newUser = new LibUser(null, name, String.valueOf(password.hashCode()));
         return userRepository.save(newUser).toString();
     }
 }

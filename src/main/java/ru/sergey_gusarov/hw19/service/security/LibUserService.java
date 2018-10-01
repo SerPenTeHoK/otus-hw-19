@@ -6,12 +6,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import ru.sergey_gusarov.hw19.domain.security.MyUserDetails;
+import ru.sergey_gusarov.hw19.domain.security.LibUserDetails;
 import ru.sergey_gusarov.hw19.domain.security.LibUser;
 import ru.sergey_gusarov.hw19.repository.security.UserRepository;
 
 @Service
-public class MyUserService implements UserDetailsService
+public class LibUserService implements UserDetailsService
 {
     @Autowired
     private UserRepository userRepository;
@@ -22,6 +22,6 @@ public class MyUserService implements UserDetailsService
         if (libUser == null) {
             throw new UsernameNotFoundException(userName);
         }
-        return new MyUserDetails(libUser);
+        return new LibUserDetails(libUser);
     }
 }

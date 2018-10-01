@@ -8,13 +8,13 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import ru.sergey_gusarov.hw19.service.security.MyUserService;
+import ru.sergey_gusarov.hw19.service.security.LibUserService;
 
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private MyUserService userService;
+    private LibUserService userService;
 
     @Override
     public void configure(WebSecurity web) {
@@ -27,19 +27,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
                     .formLogin()
-                    .loginPage("/mylogin")
+                    .loginPage("/loginPage")
                         .permitAll()
                     .defaultSuccessUrl("/")
-                    .failureUrl("/mylogin?error=true")
+                    .failureUrl("/loginPageError")
                         .permitAll()
                 .and()
                     .logout()
                     .invalidateHttpSession(true)
                     .clearAuthentication(true)
-                    .logoutSuccessUrl("/mylogin?logout")
-                    .permitAll()
-                .and()
-                    .httpBasic();
+                    .logoutSuccessUrl("/logoutPage")
+                        .permitAll()
+                ;
     }
 
     @Bean

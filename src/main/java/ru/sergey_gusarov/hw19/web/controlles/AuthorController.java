@@ -27,6 +27,7 @@ public class AuthorController {
         this.bookService = bookService;
     }
 
+
     @GetMapping("/authors")
     public String listAuthorPage(Model model) {
         List<Author> authors = authorService.findAll();
